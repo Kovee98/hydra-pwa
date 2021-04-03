@@ -1,0 +1,55 @@
+{
+  "name": "hydra-pwa",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "lint:test": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview",
+    "fontello:generate": "rm -r ./.fontello-session & fontello-cli --config ./src/scss/fontello/config.json --css ./src/scss/fontello/css --font ./src/scss/fontello/font install",
+    "fontello:open": "rm -r ./.fontello-session & fontello-cli --config ./src/scss/fontello/config.json open",
+    "image:build": "docker build -t hydra:test .",
+    "image:run": "docker run -it -p 8085:80 --name hydra-test hydra:test",
+    "image:rm": "docker stop hydra-test & docker rm hydra-test",
+    "image:rebuild": "npm run image:rm & npm run image:build & npm run image:run"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "codemirror": "^5.60.0",
+    "idb-keyval": "^5.0.4",
+    "vue": "^3.0.10",
+    "vue-codemirror": "^4.0.6",
+    "vue-prism-editor": "^1.2.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "@vitejs/plugin-vue": "^1.2.1",
+    "@vue/compiler-sfc": "^3.0.10",
+    "@vue/eslint-config-standard": "^5.1.2",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^7.23.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "eslint-plugin-vue": "^7.8.0",
+    "husky": "^4.3.0",
+    "sass": "^1.32.8",
+    "typescript": "^4.1.3",
+    "vite": "^2.1.5",
+    "vite-plugin-windicss": "^0.11.8",
+    "vue-tsc": "^0.0.15"
+  }
+}
