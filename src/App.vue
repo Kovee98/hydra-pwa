@@ -47,13 +47,11 @@
             onBeforeMount(async () => await requestStore.init());
             const currRequest = computed(() => requestStore.currRequest);
 
-            // const body = ref('{}');
             const bodyOpts = {
                 styleActiveLine: true,
                 matchBrackets: true
             };
 
-            // const results = ref('');
             const responseOpts = {
                 readOnly: true,
                 matchBrackets: false,
@@ -78,9 +76,7 @@
 
             return {
                 currRequest,
-                // body,
                 bodyOpts,
-                // results,
                 responseOpts,
                 style
             };
