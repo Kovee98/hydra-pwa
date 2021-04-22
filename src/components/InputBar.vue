@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-around w-full border-gray-700 shadow-lg h-11 border-b-1">
+    <div class="flex justify-around border-gray-700 shadow-lg border-b-1">
         <SelectBox
             :opts="methods"
             v-model="currRequest.method"

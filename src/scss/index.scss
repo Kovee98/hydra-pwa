@@ -1,3 +1,26 @@
 button, input {
     @apply focus:outline-none;
 }
+
+.layout {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 12rem 1fr 1fr;
+    grid-template-rows: 3rem 1fr 2rem;
+    gap: 0px 0px;
+    grid-template-areas:
+        "sidebar inputs inputs"
+        "sidebar request response"
+        "bottom bottom bottom";
+}
+.sidebar { grid-area: sidebar }
+.inputs { grid-area: inputs }
+.bottom { grid-area: bottom }
+.request {
+    grid-area: request;
+    overflow: auto;
+}
+.response {
+    grid-area: response;
+    overflow: auto;
+}

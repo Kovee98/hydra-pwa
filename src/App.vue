@@ -1,35 +1,29 @@
 <template>
-    <div class="flex">
-        <SideBar/>
+    <div class="layout">
+        <div v-html="style"/>
 
-        <div class="flex flex-col flex-grow h-screen">
-            <div v-html="style"/>
+        <SideBar class="sidebar"/>
 
-            <InputBar v-model="currRequest.response"/>
+        <InputBar
+            v-model="currRequest.response"
+            class="inputs"
+        />
 
-            <div class="flex h-full">
-                <!-- <div>
-                    <InputBar v-model="results"/>
-                    <CodeMirror
-                        v-model="body"
-                        :opts="bodyOpts"
-                    />
-                </div> -->
-                <CodeMirror
-                    v-model="currRequest.body"
-                    :readOnly="false"
-                    :opts="bodyOpts"
-                />
+        <CodeMirror
+            v-model="currRequest.body"
+            :readOnly="false"
+            :opts="bodyOpts"
+            class="border-gray-700 request border-r-1"
+        />
 
-                <div class="border-gray-800 border-r-1"/>
+        <CodeMirror
+            v-model="currRequest.response"
+            :readOnly="true"
+            :opts="responseOpts"
+            class="response"
+        />
 
-                <CodeMirror
-                    v-model="currRequest.response"
-                    :readOnly="true"
-                    :opts="responseOpts"
-                />
-            </div>
-        </div>
+        <BottomBar class="bottom"/>
     </div>
 </template>
 
@@ -38,6 +32,7 @@
     import InputBar from './components/InputBar.vue';
     import CodeMirror from './components/CodeMirror.vue';
     import SideBar from './components/SideBar.vue';
+    import BottomBar from './components/BottomBar.vue';
     import { requestStore } from './stores/RequestStore';
 
     export default defineComponent({
@@ -45,7 +40,8 @@
         components: {
             InputBar,
             SideBar,
-            CodeMirror
+            CodeMirror,
+            BottomBar
         },
         setup () {
             onBeforeMount(async () => await requestStore.init());

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col w-full bg-gray-900 cursor-text"
+        class="flex flex-col bg-gray-900 cursor-text"
     >
         <textarea
             ref="textarea"

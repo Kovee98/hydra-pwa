@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-gray-800 border-gray-700 w-50 border-r-1">
-        <div class="flex items-center justify-between p-3 text-center text-gray-300 border-gray-700 h-11 border-b-1">
+    <div class="bg-gray-800 border-gray-700 border-r-1">
+        <div class="flex items-center justify-between h-12 p-3 text-center text-gray-300 border-gray-700 border-b-1">
             <div>
                 <img
                     :src="hydraLogo"
