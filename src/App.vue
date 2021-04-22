@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-    import { defineComponent, ref, reactive, computed, onBeforeMount } from 'vue';
+    import { defineComponent, reactive, computed, onBeforeMount } from 'vue';
     import InputBar from './components/InputBar.vue';
     import CodeMirror from './components/CodeMirror.vue';
     import SideBar from './components/SideBar.vue';
