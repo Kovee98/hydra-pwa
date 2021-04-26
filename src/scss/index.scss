@@ -2,25 +2,63 @@ button, input {
     @apply focus:outline-none;
 }
 
-.layout {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 12rem 1fr 1fr;
-    grid-template-rows: 3rem 1fr 2rem;
-    gap: 0px 0px;
+#page {
+    @apply grid h-screen;
     grid-template-areas:
-        "sidebar inputs inputs"
-        "sidebar request response"
-        "bottom bottom bottom";
+        "header header header header header"
+        "sidebar sidebar-drag request-inputs editor-drag response-header"
+        "sidebar sidebar-drag request-tabs editor-drag response-tabs"
+        "sidebar sidebar-drag request-body editor-drag response-body"
+        "footer footer footer footer footer";
+    grid-template-columns: 200px 7px 43% 7px 2fr;
+    grid-template-rows: 4rem 3rem 3rem 1fr 2rem;
 }
-.sidebar { grid-area: sidebar }
-.inputs { grid-area: inputs }
-.bottom { grid-area: bottom }
-.request {
-    grid-area: request;
-    overflow: auto;
+#header { grid-area: header }
+#footer { grid-area: footer }
+#sidebar {
+    @apply overflow-auto;
+    grid-area: sidebar;
+    margin-right: -3px;
 }
-.response {
-    grid-area: response;
-    overflow: auto;
+#sidebar-drag {
+    @apply z-50;
+	grid-area: sidebar-drag;
+	cursor: ew-resize;
+}
+#request-inputs {
+	grid-area: request-inputs;
+    margin-right: -3px;
+    margin-left: -3px;
+}
+#request-tabs {
+	grid-area: request-tabs;
+    margin-right: -3px;
+    margin-left: -3px;
+}
+#request-body {
+    @apply overflow-auto;
+	grid-area: request-body;
+    margin-right: -3px;
+    margin-left: -3px;
+}
+#editor-drag {
+    @apply z-50;
+	grid-area: editor-drag;
+	cursor: ew-resize;
+}
+#response-header {
+	grid-area: response-header;
+    margin-left: -3px;
+}
+#response-tabs {
+	grid-area: response-tabs;
+    margin-left: -3px;
+}
+#response-body {
+    @apply overflow-auto;
+	grid-area: response-body;
+    margin-left: -3px;
+}
+.divider {
+    @apply w-px bg-gray-700 m-0 mx-auto h-full;
 }

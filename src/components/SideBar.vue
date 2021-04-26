@@ -1,13 +1,6 @@
 <template>
-    <div class="bg-gray-800 border-gray-700 border-r-1">
+    <div class="bg-gray-800 border-gray-700">
         <div class="flex items-center justify-between h-12 p-3 text-center text-gray-300 border-gray-700 border-b-1">
-            <div>
-                <img
-                    :src="hydraLogo"
-                    class="float-left h-6 mr-3"
-                />
-                <span class="text-lg">Hydra</span>
-            </div>
             <div>
                 <button
                     @click="createFolder"
@@ -113,8 +106,7 @@
                 requestStore,
                 createRequest,
                 createFolder,
-                editRequest,
-                hydraLogo
+                editRequest
             };
         }
     });
@@ -127,8 +119,9 @@
             flex
             justify-between
             items-center
-            cursor-pointer
-            text-gray-300;
+            cursor-default
+            text-gray-300
+            hover:bg-gray-700;
 
         button {
             @apply
@@ -143,6 +136,10 @@
         }
 
         &.active {
+            @apply bg-gray-700;
+        }
+
+        &.ghost {
             @apply bg-gray-700;
         }
     }

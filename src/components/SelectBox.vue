@@ -2,7 +2,7 @@
     <button
         id="select-box"
         @click="showOpts = !showOpts"
-        class="h-full px-2 uppercase bg-gray-800 w-25 hover:bg-gray-700"
+        class="h-full px-2 uppercase bg-gray-800 cursor-default w-25 hover:bg-gray-700"
     >
         <span :class="modelValue">{{ modelValue }}</span>
         <i class="float-right mr-1 text-gray-400 icon-down-open-1"></i>
@@ -17,7 +17,7 @@
                 v-for="opt in opts"
                 :key="opt.id"
                 @click="selectOpt(opt)"
-                class="w-full py-2 hover:bg-gray-300"
+                class="w-full py-2 cursor-default hover:bg-gray-300"
                 :class="opt.value"
             >
                 {{ opt.name }}

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-around border-gray-700 shadow-lg border-b-1">
+    <div class="flex border-gray-700 shadow-lg border-b-1">
         <SelectBox
             :opts="methods"
             v-model="currRequest.method"
@@ -8,21 +8,21 @@
         <input
             v-model.trim="currRequest.url"
             placeholder="http://"
-            class="flex-grow p-3 text-gray-400 bg-gray-800"
+            class="flex-grow min-w-0 p-2 text-gray-400 bg-gray-800"
         >
 
-        <button
+        <!-- <button
             @click="submit"
             class="text-gray-100 bg-blue-500 w-22 active:bg-blue-600"
         >
             Send
-        </button>
-        <!-- <button
+        </button> -->
+        <button
             @click="submit"
-            class="text-gray-300 bg-gray-800 w-22 hover:bg-gray-700"
+            class="text-gray-300 bg-gray-800 cursor-default w-22 hover:bg-gray-700"
         >
             Send
-        </button> -->
+        </button>
     </div>
 </template>
 
