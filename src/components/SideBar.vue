@@ -16,51 +16,53 @@
                 </button>
             </div>
         </div>
-        <div
-            v-for="request in requests"
-            :key="request.id"
-            @click="requestStore.currRequest = request"
-            class="request"
-            :class="{ 'active' : request.id ===  requestStore.currRequest.id}"
-        >
+        <div ref="requestItems">
             <div
-                v-if="editMode !== request.id"
-                class="py-2 ml-4"
+                v-for="request in requests"
+                :key="request.id"
+                @click="requestStore.currRequest = request"
+                class="request"
+                :class="{ 'active' : request.id ===  requestStore.currRequest.id}"
             >
-                {{ request.name }}
-            </div>
-            <input
-                v-if="editMode === request.id"
-                @keyup.enter="editMode = -1"
-                @blur="editMode = -1"
-                class="p-4 py-2 text-gray-400 bg-transparent"
-                v-model="request.name"
-                ref="editModeInput"
-            />
-            <div class="mr-2">
-                <button
-                    @click.stop="editRequest(request.id)"
-                    class="hover:text-blue-400"
+                <div
+                    v-if="editMode !== request.id"
+                    class="py-2 ml-4"
                 >
-                    <i class="text-sm icon-pencil"></i>
-                </button>
-                <button
-                    v-if="request.id !==  requestStore.currRequest.id"
-                    @click.stop="requestStore.removeRequest(request.id)"
-                    class="hover:text-red-500"
-                >
-                    <i class="text-sm icon-trash"></i>
-                </button>
+                    {{ request.name }}
+                </div>
+                <input
+                    v-if="editMode === request.id"
+                    @keyup.enter="editMode = -1"
+                    @blur="editMode = -1"
+                    class="p-4 py-2 text-gray-400 bg-transparent"
+                    v-model="request.name"
+                    ref="editModeInput"
+                />
+                <div class="mr-2">
+                    <button
+                        @click.stop="editRequest(request.id)"
+                        class="hover:text-blue-400"
+                    >
+                        <i class="text-sm icon-pencil"></i>
+                    </button>
+                    <button
+                        v-if="request.id !==  requestStore.currRequest.id"
+                        @click.stop="requestStore.removeRequest(request.id)"
+                        class="hover:text-red-500"
+                    >
+                        <i class="text-sm icon-trash"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import { defineComponent, computed, ref, nextTick } from 'vue';
+    import { defineComponent, computed, ref, nextTick, onBeforeUpdate } from 'vue';
     import { requestStore } from '../stores/RequestStore';
     import { Request } from '../types';
-    import hydraLogo from '../assets/img/logo.svg';
+    import Sortable from 'sortablejs';
 
     export default defineComponent({
         name: 'SideBar',
@@ -68,6 +70,16 @@
             const requests = computed(() => requestStore.requests);
             const editMode = ref(-1);
             const editModeInput = ref(null);
+            const requestItems = ref(null);
+            let sortable = null;
+
+            onBeforeUpdate(() => {
+                sortable = new Sortable(requestItems.value, {
+                    animation: 150,
+                    fallbackOnBody: true,
+                    ghostClass: 'ghost'
+                });
+            });
 
             const createRequest = async () => {
                 const newId: number = requestStore.getNextId();
@@ -103,6 +115,7 @@
                 requests,
                 editMode,
                 editModeInput,
+                requestItems,
                 requestStore,
                 createRequest,
                 createFolder,
